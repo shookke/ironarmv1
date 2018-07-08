@@ -2,7 +2,7 @@ import lib.Adafruit_PCA9685 as Adafruit_PCA9685
 import time
 from random import random
 
-class cMissle(object):
+class cMissle():
 
     def init(self, motor):
         self.armed = bool
