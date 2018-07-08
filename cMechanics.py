@@ -1,8 +1,8 @@
 import lib.Adafruit_PCA9685 as Adafruit_PCA9685
 
-class cMechanics():
+class cMechanics:
 
-    def init(self, leds, **kwargs):
+    def __init__(self, leds, **kwargs):
         self.leds = leds #array of pwm addresses
         self.pwm = Adafruit_PCA9685.PCA9685()
         self.pwm_freq = self.pwm.set_pwm_freq(1000)

@@ -2,9 +2,9 @@ import lib.Adafruit_PCA9685 as Adafruit_PCA9685
 import time
 from random import random
 
-class cMissle():
+class cMissle:
 
-    def init(self, motor):
+    def __init__(self, motor):
         self.armed = bool
         self.motor = motor #pwm address
         self.pwm = Adafruit_PCA9685.PCA9685()

@@ -2,8 +2,8 @@ import lib.Adafruit_PCA9685 as Adafruit_PCA9685
 import time
 from random import random
 
-class cRepulsor():
-    def init(self, led):
+class cRepulsor:
+    def __init__(self, led):
         self.armed = bool
         self.led = led #pwm address
         self.pwm = Adafruit_PCA9685.PCA9685()
