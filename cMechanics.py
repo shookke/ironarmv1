@@ -1,4 +1,4 @@
-import Adafruit_PCA9685
+import lib.Adafruit_PCA9685 as Adafruit_PCA9685
 
 class cMechanics(object):
 
