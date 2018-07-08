@@ -1,4 +1,4 @@
-import lib.OpenMyo.open_myo as myo
+import lib.Open_Myo.open_myo as myo
 import cRepulsor
 import cMissle
 import cMechanics
