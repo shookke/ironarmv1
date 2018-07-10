@@ -15,7 +15,7 @@ cooler = cTemp.cTemp(pwm, 1)
 
 temp = 3
 
-cooler = threading.Thread(target=cooler.cool, name='cooler', args=temp)
+cooler = threading.Thread(target=cooler.cool, name='cooler', args=(temp))
 cooler.start()
 
 def process_emg(emg):
