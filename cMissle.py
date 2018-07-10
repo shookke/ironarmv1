@@ -23,7 +23,8 @@ class cMissle:
         self.armed = False
     
     def fire(self):
-        print('FIRE!')
+        if self.armed:
+            print('FIRE!')
     
     def isArmed(self):
         if self.armed:

@@ -42,8 +42,10 @@ def process_classifier(pose):
     if (pose == pose.WAVE_OUT):
         print(position)
         if position[1] < -0.2:
+            repulsor.flight_mode = True
             repulsor.flight()   
         else:
+            repulsor.flight_mode = False
             repulsor.arm()
     elif (pose == pose.FINGERS_SPREAD):
         repulsor.fire()
