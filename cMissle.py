@@ -7,12 +7,13 @@ class cMissle:
     def __init__(self, pwm, motor):
         self.armed = bool
         self.motor = motor #pwm address
-        self.pwm = pwm
+        self.pwm = pwm #PCA9685
         self.pwm_freq = self.pwm.set_pwm_freq(60)
         self.servo_min = 150
         self.servo_max = 600
 
     def arm(self):
+        self.pwm.set_pwm_freq(60)
         self.pwm.set_pwm(self.motor, 0, self.servo_max)
         self.armed = True
     
