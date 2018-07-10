@@ -1,13 +1,15 @@
 import lib.Open_Myo.open_myo as myo
+import lib.Adafruit_PCA9685 as Adafruit_PCA9685
 import cRepulsor
 import cMissle
 import cMechanics
 import threading
 import time
 
-repulsor = cRepulsor.cRepulsor(4)
-missle = cMissle.cMissle(0)
-mechanics = cMechanics.cMechanics({2,3})
+pwm = Adafruit_PCA9685.PCA9685()
+repulsor = cRepulsor.cRepulsor(pwm, 4)
+missle = cMissle.cMissle(pwm, 0)
+mechanics = cMechanics.cMechanics(pwm, {2,3})
 
 def process_emg(emg):
     print(emg)

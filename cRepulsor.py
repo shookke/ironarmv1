@@ -3,10 +3,10 @@ import time
 from random import random
 
 class cRepulsor:
-    def __init__(self, led):
+    def __init__(self, pwm, led):
         self.armed = bool
         self.led = led #pwm address
-        self.pwm = Adafruit_PCA9685.PCA9685()
+        self.pwm = pwm
         self.pwm_freq = self.pwm.set_pwm_freq(1000)
         self.LED_max = 255
         self.LED_min = 0
