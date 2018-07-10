@@ -16,7 +16,7 @@ cooler = cTemp.cTemp(pwm, 1)
 temp = 3
 
 temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
-
+temp_process.start()
 
 def process_emg(emg):
     print(emg)
@@ -27,8 +27,6 @@ def process_imu(quat, acc, gyro):
 def process_sync(arm, x_direction):
     if arm == arm.UNKNOWN:
         temp_process.terminate()
-    if arm == arm.RIGHT or arm.LEFT:
-        temp_process.start()
     print(arm, x_direction)
 
 def process_classifier(pose):
