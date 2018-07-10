@@ -28,16 +28,18 @@ class cRepulsor:
         self.armed = False
     
     def fire(self):
-        self.pwm.set_pwm(4, 0, self.LED_max)
-        time.sleep(0.5)
-        self.arm()
+        if self.armed:
+            self.pwm.set_pwm(4, 0, self.LED_max)
+            time.sleep(0.5)
+            self.arm()
     
     def flight(self):
-        self.pwm.set_pwm_freq(1000)
-        self.pwm.set_pwm(4, 0, self.LED_max)
-        time.sleep(random())
-        self.pwm.set_pwm(4, 0, self.LED_med)
-        time.sleep(random())
+        if self.flight_mode:
+            self.pwm.set_pwm_freq(1000)
+            self.pwm.set_pwm(4, 0, self.LED_max)
+            time.sleep(random())
+            self.pwm.set_pwm(4, 0, self.LED_med)
+            time.sleep(random())
 
     def isArmed(self):
         if self.armed:
