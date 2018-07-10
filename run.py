@@ -17,7 +17,7 @@ temp = 2.5
 position = []
 
 temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
-temp_process.start()
+#temp_process.start()
 
 def process_emg(emg):
     print(emg)
