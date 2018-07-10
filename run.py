@@ -15,7 +15,7 @@ cooler = cTemp.cTemp(pwm, 1)
 
 temp = 2.5
 position = []
-synced = False
+synced = True
 if synced:
     temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
     temp_process.start()

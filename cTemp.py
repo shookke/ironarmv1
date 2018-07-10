@@ -13,7 +13,7 @@ class cTemp:
             self.pwm.set_pwm(1, 1, 0)
             time.sleep(temp)
             self.pwm.set_pwm(1, 0, 1)
-            time.sleep(temp)
+            time.sleep(temp * 2)
             continue
         print("Finished Cooling.")
     
