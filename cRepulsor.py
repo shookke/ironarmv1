@@ -14,12 +14,14 @@ class cRepulsor:
         self.flight_mode = bool
 
     def arm(self):
+        self.pwm.set_pwm_freq(1000)
         for i in range(self.LED_min, self.LED_med):
                 #print(i)
                 self.pwm.set_pwm(self.led, 0, i)
         self.armed = True
     
     def disarm(self):
+        self.pwm.set_pwm_freq(1000)
         for i in range(self.LED_med, -1, -1):
                         #print(i)
                         self.pwm.set_pwm(self.led, 0, i)
@@ -28,9 +30,10 @@ class cRepulsor:
     def fire(self):
         self.pwm.set_pwm(4, 0, self.LED_max)
         time.sleep(0.5)
-        self.pwm.set_pwm(4, 0, self.LED_med)
+        self.arm()
     
     def flight(self, active):
+        self.pwm.set_pwm_freq(1000)
         while self.flight_mode:
             self.pwm.set_pwm(4, 0, self.LED_max)
             time.sleep(random(0.0,0.9))

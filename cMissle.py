@@ -18,6 +18,7 @@ class cMissle:
         self.armed = True
     
     def disarm(self):
+        self.pwm.set_pwm_freq(60)
         self.pwm.set_pwm(self.motor, 0, self.servo_min)
         self.armed = False
     
