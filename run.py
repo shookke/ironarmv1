@@ -32,7 +32,10 @@ def process_classifier(pose):
     elif (pose == pose.WAVE_IN):
         missle.fire()
     elif (pose == pose.DOUBLE_TAP):
-        myo_device.sleep()
+        if repulsor.flight_mode:
+            repulsor.flight_mode = False
+        else:
+            repulsor.flight_mode = True
     elif (pose == pose.REST):
         if repulsor.isArmed():
             repulsor.disarm()
