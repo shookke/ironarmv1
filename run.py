@@ -15,6 +15,7 @@ cooler = cTemp.cTemp(pwm, 1)
 
 temp = 2.5
 position = []
+initial_pos = position
 synced = True
 if synced:
     temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
@@ -39,7 +40,7 @@ def process_sync(arm, x_direction):
 def process_classifier(pose):
     print(pose)
     if (pose == pose.WAVE_OUT):
-        print(position[2])
+        print(position)
         if position[2] < -0.1:
             repulsor.flight()   
         else:
