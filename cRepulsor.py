@@ -36,9 +36,9 @@ class cRepulsor:
         self.pwm.set_pwm_freq(1000)
         while self.flight_mode:
             self.pwm.set_pwm(4, 0, self.LED_max)
-            time.sleep(random(0.0,0.9))
+            time.sleep(random())
             self.pwm.set_pwm(4, 0, self.LED_med)
-            time.sleep(random(0.0,0.9))
+            time.sleep(random())
 
     def isArmed(self):
         if self.armed:
