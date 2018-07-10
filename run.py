@@ -4,7 +4,7 @@ import cRepulsor
 import cMissle
 import cMechanics
 import cTemp
-import threading
+import multiprocessing
 import time
 
 pwm = Adafruit_PCA9685.PCA9685()
@@ -15,7 +15,7 @@ cooler = cTemp.cTemp(pwm, 1)
 
 temp = 3
 
-temp_thread = threading.Thread(target=cooler.cool, name='cooler', args=([temp]))
+temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
 
 
 def process_emg(emg):
@@ -26,9 +26,9 @@ def process_imu(quat, acc, gyro):
 
 def process_sync(arm, x_direction):
     if arm == arm.UNKNOWN:
-        temp_thread.stop()
+        temp_process.terminate()
     if arm == arm.RIGHT or arm.LEFT:
-        temp_thread.start()
+        temp_process.start()
     print(arm, x_direction)
 
 def process_classifier(pose):
