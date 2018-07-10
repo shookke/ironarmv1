@@ -29,7 +29,7 @@ class cRepulsor:
     
     def fire(self):
         self.pwm.set_pwm(4, 0, self.LED_max)
-        #time.sleep(0.5)
+        time.sleep(0.5)
         self.arm()
     
     def flight(self, active):

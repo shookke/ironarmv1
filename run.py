@@ -26,7 +26,7 @@ def process_classifier(pose):
     if (pose == pose.WAVE_OUT):
         repulsor.arm()
     elif (pose == pose.FINGERS_SPREAD):
-        repulsor.disarm()
+        repulsor.fire()
     elif (pose ==pose.FIST):
         missle.arm()
     elif (pose == pose.WAVE_IN):
