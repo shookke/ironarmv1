@@ -3,6 +3,7 @@ import lib.Adafruit_PCA9685 as Adafruit_PCA9685
 import cRepulsor
 import cMissle
 import cMechanics
+import cTemp
 import threading
 import time
 
@@ -10,6 +11,12 @@ pwm = Adafruit_PCA9685.PCA9685()
 repulsor = cRepulsor.cRepulsor(pwm, 4)
 missle = cMissle.cMissle(pwm, 0)
 mechanics = cMechanics.cMechanics(pwm, {2,3})
+temp = cTemp.cTemp(pwm, 1)
+
+temp = 3
+
+cooler = threading.Thread(target=temp.cool, name='cooler', args=temp)
+cooler.start()
 
 def process_emg(emg):
     print(emg)
