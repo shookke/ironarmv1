@@ -4,14 +4,14 @@ from random import random
 
 class cRepulsor:
     def __init__(self, pwm, led):
-        self.armed = bool
+        self.armed = False
         self.led = led #pwm address
         self.pwm = pwm
         self.pwm_freq = self.pwm.set_pwm_freq(1000)
         self.LED_max = 255
         self.LED_min = 0
         self.LED_med = 75
-        self.flight_mode = bool
+        self.flight_mode = False
 
     def arm(self):
         self.pwm.set_pwm_freq(1000)

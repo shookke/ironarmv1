@@ -5,7 +5,7 @@ from random import random
 class cMissle:
 
     def __init__(self, pwm, motor):
-        self.armed = bool
+        self.armed = False
         self.motor = motor #pwm address
         self.pwm = pwm #PCA9685
         self.pwm_freq = self.pwm.set_pwm_freq(60)
