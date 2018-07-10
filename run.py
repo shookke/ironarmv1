@@ -41,14 +41,14 @@ def process_classifier(pose):
     print(pose)
     if (pose == pose.WAVE_OUT):
         print(position)
-        if position[2] < -0.1:
+        if position[1] < -0.2:
             repulsor.flight()   
         else:
             repulsor.arm()
     elif (pose == pose.FINGERS_SPREAD):
         repulsor.fire()
     elif (pose ==pose.FIST):
-        if position[2] > -0.1:
+        if position[1] > -0.2:
             missle.arm()
     elif (pose == pose.WAVE_IN):
         missle.fire()
