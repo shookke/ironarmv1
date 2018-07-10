@@ -32,7 +32,7 @@ class cRepulsor:
         time.sleep(0.5)
         self.arm()
     
-    def flight(self, active):
+    def flight(self):
         self.pwm.set_pwm_freq(1000)
         while self.flight_mode:
             self.pwm.set_pwm(4, 0, self.LED_max)
