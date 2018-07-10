@@ -13,7 +13,7 @@ missle = cMissle.cMissle(pwm, 0)
 mechanics = cMechanics.cMechanics(pwm, {2,3})
 cooler = cTemp.cTemp(pwm, 1)
 
-temp = 3
+temp = 2.5
 
 temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
 temp_process.start()
