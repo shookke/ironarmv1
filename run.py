@@ -22,12 +22,12 @@ def process_emg(emg):
     print(emg)
 
 def process_imu(quat, acc, gyro):
-    print(quat)
+    print(gyro)
 
 def process_sync(arm, x_direction):
     if arm == arm.UNKNOWN:
         temp_process.terminate()
-    print(arm, x_direction)
+    print(arm)
 
 def process_classifier(pose):
 
