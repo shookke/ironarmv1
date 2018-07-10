@@ -27,7 +27,7 @@ def process_imu(quat, acc, gyro):
 def process_sync(arm, x_direction):
     if arm == 255:
         temp_thread.stop()
-    elif arm == 2 or 1:
+    if arm == 2 or 1:
         temp_thread.start()
     print(arm, x_direction)
 
