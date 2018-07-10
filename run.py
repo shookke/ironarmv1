@@ -14,6 +14,7 @@ mechanics = cMechanics.cMechanics(pwm, {2,3})
 cooler = cTemp.cTemp(pwm, 1)
 
 temp = 2.5
+position = []
 
 temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
 temp_process.start()
@@ -22,21 +23,24 @@ def process_emg(emg):
     print(emg)
 
 def process_imu(quat, acc, gyro):
-    print(gyro)
+    global position
+    position = quat
 
 def process_sync(arm, x_direction):
     if arm == arm.UNKNOWN:
         temp_process.terminate()
+    if arm == arm.RIGHT:
+        temp_process.start()
     print(arm)
 
 def process_classifier(pose):
-
     print(pose)
     if (pose == pose.WAVE_OUT):
-        if repulsor.flight_mode:
-            repulsor.flight()
-        else:
-            repulsor.arm()
+        if position[1] > 0.5:
+            if repulsor.flight_mode:
+                repulsor.flight()
+            else:
+                repulsor.arm()
     elif (pose == pose.FINGERS_SPREAD):
         repulsor.fire()
     elif (pose ==pose.FIST):
