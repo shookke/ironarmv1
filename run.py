@@ -11,11 +11,11 @@ pwm = Adafruit_PCA9685.PCA9685()
 repulsor = cRepulsor.cRepulsor(pwm, 4)
 missle = cMissle.cMissle(pwm, 0)
 mechanics = cMechanics.cMechanics(pwm, {2,3})
-temp = cTemp.cTemp(pwm, 1)
+cooler = cTemp.cTemp(pwm, 1)
 
 temp = 3
 
-cooler = threading.Thread(target=temp.cool, name='cooler', args=temp)
+cooler = threading.Thread(target=cooler.cool, name='cooler', args=temp)
 cooler.start()
 
 def process_emg(emg):
