@@ -15,7 +15,7 @@ cooler = cTemp.cTemp(pwm, 1)
 
 temp = 3
 
-temp_thread = threading.Thread(target=cooler.cool, name='cooler', args=(temp))
+temp_thread = threading.Thread(target=cooler.cool, name='cooler', args=([temp]))
 temp_thread.start()
 
 def process_emg(emg):
@@ -42,10 +42,10 @@ def process_classifier(pose):
     elif (pose == pose.WAVE_IN):
         missle.fire()
     elif (pose == pose.DOUBLE_TAP):
-        if repulsor.flight_mode:
-            repulsor.flight_mode = False
-        else:
+        if not repulsor.flight_mode:
             repulsor.flight_mode = True
+        else:
+            repulsor.flight_mode = False
     elif (pose == pose.REST):
         if repulsor.isArmed():
             repulsor.disarm()
