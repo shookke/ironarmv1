@@ -36,11 +36,11 @@ def process_sync(arm, x_direction):
 def process_classifier(pose):
     print(pose)
     if (pose == pose.WAVE_OUT):
-        if position[1] > 0.5:
-            if repulsor.flight_mode:
-                repulsor.flight()
-            else:
-                repulsor.arm()
+        print(position)
+        if repulsor.flight_mode:
+            repulsor.flight()
+        else:
+            repulsor.arm()
     elif (pose == pose.FINGERS_SPREAD):
         repulsor.fire()
     elif (pose ==pose.FIST):
