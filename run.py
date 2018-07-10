@@ -16,7 +16,7 @@ cooler = cTemp.cTemp(pwm, 1)
 temp = 3
 
 temp_thread = threading.Thread(target=cooler.cool, name='cooler', args=([temp]))
-temp_thread.start()
+
 
 def process_emg(emg):
     print(emg)
@@ -25,6 +25,10 @@ def process_imu(quat, acc, gyro):
     print(quat)
 
 def process_sync(arm, x_direction):
+    if arm == 255:
+        temp_thread.stop()
+    else:
+        temp_thread.start()
     print(arm, x_direction)
 
 def process_classifier(pose):
