@@ -15,9 +15,10 @@ cooler = cTemp.cTemp(pwm, 1)
 
 temp = 2.5
 position = []
-
-temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
-temp_process.start()
+synced = False
+if synced:
+    temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
+    temp_process.start()
 
 def process_emg(emg):
     print(emg)
@@ -27,27 +28,27 @@ def process_imu(quat, acc, gyro):
     position = quat
 
 def process_sync(arm, x_direction):
-    global temp_process
+    global synced
     if arm == arm.UNKNOWN:
         temp_process.terminate()
+        synced = False
     if arm == arm.RIGHT or arm.LEFT:
-        temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
-        temp_process.start()
+        synced = True
     print(arm)
 
 def process_classifier(pose):
     print(pose)
     if (pose == pose.WAVE_OUT):
         print(position[2])
-        if position[2] < 0.2:
-            if repulsor.flight_mode:
-                repulsor.flight()
-            else:
-                repulsor.arm()
+        if position[2] < -0.1:
+            repulsor.flight()   
+        else:
+            repulsor.arm()
     elif (pose == pose.FINGERS_SPREAD):
         repulsor.fire()
     elif (pose ==pose.FIST):
-        missle.arm()
+        if position[2] > -0.1:
+            missle.arm()
     elif (pose == pose.WAVE_IN):
         missle.fire()
     elif (pose == pose.DOUBLE_TAP):
