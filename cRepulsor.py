@@ -24,10 +24,10 @@ class cRepulsor:
         self.pwm.set_pwm_freq(1000)
         pygame.mixer.music.load(self.arming)   
         pygame.mixer.music.play()
-        for i in range(self.LED_min, self.LED_med):
+        while pygame.mixer.music.get_busy() == True:
+            for i in range(self.LED_min, self.LED_med):
                 #print(i)
                 self.pwm.set_pwm(self.led, 0, i)
-        while pygame.mixer.music.get_busy() == True:
             continue
         self.armed = True
     
@@ -35,17 +35,21 @@ class cRepulsor:
         self.pwm.set_pwm_freq(1000)
         pygame.mixer.music.load(self.disarming)   
         pygame.mixer.music.play()
-        for i in range(self.LED_med, -1, -1):
+        while pygame.mixer.music.get_busy() == True:
+            for i in range(self.LED_med, -1, -1):
                         #print(i)
                         self.pwm.set_pwm(self.led, 0, i)
-        while pygame.mixer.music.get_busy() == True:
             continue
         self.armed = False
     
     def fire(self):
         if self.armed:
-            self.pwm.set_pwm(4, 0, self.LED_max)
-            time.sleep(0.5)
+            pygame.mixer.music.load(self.disarming)   
+            pygame.mixer.music.play()
+            while pygame.mixer.music.get_busy() == True:
+                self.pwm.set_pwm(4, 0, self.LED_max)
+                time.sleep(0.5)
+                continue
             self.arm()
     
     def flight(self):
