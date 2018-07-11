@@ -11,6 +11,9 @@ class cRepulsor:
         self.led = led #pwm address
         self.pwm = pwm
         self.pwm_freq = self.pwm.set_pwm_freq(1000)
+        self.arming = pygame.mixer.music.load('res/audio/1.ogg')
+        self.firing = pygame.mixer.music.load('res/audio/2.ogg')
+        self.disarming = pygame.mixer.music.load('res/audio/3.ogg')
         self.LED_max = 255
         self.LED_min = 0
         self.LED_med = 75
@@ -18,12 +21,12 @@ class cRepulsor:
 
     def arm(self):
         self.pwm.set_pwm_freq(1000)
-        pygame.mixer.music.load('res/audio/1.ogg')   
-        pygame.mixer.music.play()
+        self.arming = pygame.mixer.music.load('res/audio/1.ogg')   
+        self.arming.play()
         for i in range(self.LED_min, self.LED_med):
                 #print(i)
                 self.pwm.set_pwm(self.led, 0, i)
-        while pygame.mixer.music.get_busy() == True:
+        while self.arming.get_busy() == True:
             continue
         self.armed = True
     
