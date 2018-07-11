@@ -20,8 +20,7 @@ class cRepulsor:
         self.flight_mode = False
 
     def arm(self):
-        self.pwm.set_pwm_freq(1000)
-        self.arming = pygame.mixer.music.load('res/audio/1.ogg')   
+        self.pwm.set_pwm_freq(1000)   
         self.arming.play()
         for i in range(self.LED_min, self.LED_med):
                 #print(i)
