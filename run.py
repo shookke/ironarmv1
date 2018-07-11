@@ -59,11 +59,12 @@ def process_classifier(pose):
     elif (pose == pose.REST):
         if not repulsor.flight_mode:
             repulsor.disarm()
-        if position[1] > -0.2:
-            if repulsor.isArmed():
-                repulsor.disarm()
-            if missle.isArmed():
-                missle.disarm()
+        if position:    
+            if position[1] > -0.2:
+                if repulsor.isArmed():
+                    repulsor.disarm()
+                if missle.isArmed():
+                    missle.disarm()
     else:
         print('no input')
 
