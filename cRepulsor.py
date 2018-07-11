@@ -4,6 +4,7 @@ import time
 from random import random
 
 pygame.mixer.init()
+pygame.mixer.music.set_volume(1.0)
 
 class cRepulsor:
     def __init__(self, pwm, led):
@@ -32,9 +33,13 @@ class cRepulsor:
     
     def disarm(self):
         self.pwm.set_pwm_freq(1000)
+        pygame.mixer.music.load(self.disarming)   
+        pygame.mixer.music.play()
         for i in range(self.LED_med, -1, -1):
                         #print(i)
                         self.pwm.set_pwm(self.led, 0, i)
+        while pygame.mixer.music.get_busy() == True:
+            continue
         self.armed = False
     
     def fire(self):
