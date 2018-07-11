@@ -1,4 +1,5 @@
 import lib.Adafruit_PCA9685 as Adafruit_PCA9685
+import pygame  
 import time
 from random import random
 
@@ -8,6 +9,7 @@ class cRepulsor:
         self.led = led #pwm address
         self.pwm = pwm
         self.pwm_freq = self.pwm.set_pwm_freq(1000)
+        self.audio = pygame.mixer.init()
         self.LED_max = 255
         self.LED_min = 0
         self.LED_med = 75
@@ -17,7 +19,11 @@ class cRepulsor:
         self.pwm.set_pwm_freq(1000)
         for i in range(self.LED_min, self.LED_med):
                 #print(i)
+                self.audio.music.load('/res/audio/1.ogg')   
+                self.audio.music.play()
                 self.pwm.set_pwm(self.led, 0, i)
+                while self.audio.music.get_busy() == True:
+                    continue
         self.armed = True
     
     def disarm(self):
