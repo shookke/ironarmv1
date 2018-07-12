@@ -27,9 +27,8 @@ class cRepulsor:
         pygame.mixer.music.play()
         time.sleep(0.5)
         for i in range(self.LED_min, self.LED_med):
-                #print(i)
                 self.pwm.set_pwm(self.led, 0, i)
-                time.sleep(0.2)
+                time.sleep(0.05)
         while pygame.mixer.music.get_busy() == True:
             continue
         self.armed = True
@@ -43,7 +42,7 @@ class cRepulsor:
         for i in range(self.LED_med, -1, -1):
                         #print(i)
                         self.pwm.set_pwm(self.led, 0, i)
-                        time.sleep(0.2)
+                        time.sleep(0.05)
         while pygame.mixer.music.get_busy() == True:
             continue
         self.armed = False
