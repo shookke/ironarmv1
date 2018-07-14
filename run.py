@@ -19,7 +19,7 @@ initial_pos = position
 synced = True
 if synced:
     temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
-    temp_process.start()
+    #temp_process.start()
 
 def process_emg(emg):
     print(emg)
