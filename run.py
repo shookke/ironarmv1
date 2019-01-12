@@ -72,8 +72,6 @@ def process_classifier(pose):
         print('no input')
 
 def process_battery(batt):
-    if batt > 90:
-
     print("Battery level: %d" % batt)
 
 
