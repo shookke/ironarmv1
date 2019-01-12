@@ -10,13 +10,15 @@ import time
 pwm = Adafruit_PCA9685.PCA9685()
 repulsor = cRepulsor.cRepulsor(pwm, 4)
 missle = cMissle.cMissle(pwm, 0)
-mechanics = cMechanics.cMechanics(pwm, {2,3})
+mechanics = cMechanics.cMechanics()
 cooler = cTemp.cTemp(pwm, 1)
 
+mechanics.boot()
 temp = 2.5
 position = []
 initial_pos = position
 synced = True
+
 if synced:
     temp_process = multiprocessing.Process(target=cooler.cool, name='cooler', args=([temp]))
     #temp_process.start()
@@ -70,7 +72,10 @@ def process_classifier(pose):
         print('no input')
 
 def process_battery(batt):
+    if batt > 90:
+
     print("Battery level: %d" % batt)
+
 
 def led_emg(emg):
     if(emg[0] > 80):
