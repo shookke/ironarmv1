@@ -15,12 +15,12 @@ class cMissle:
 
     def arm(self):
         self.pwm.frequency = 60
-        self.led.duty_cycle = self.servo_max
+        self.motor.duty_cycle = self.servo_max
         self.armed = True
     
     def disarm(self):
         self.pwm.frequency = 60
-        self.led.duty_cycle = self.servo_min
+        self.motor.duty_cycle = self.servo_min
         self.armed = False
     
     def fire(self):
