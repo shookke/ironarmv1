@@ -1,5 +1,7 @@
 import lib.Open_Myo.open_myo as myo
-import lib.Adafruit_PCA9685 as Adafruit_PCA9685
+import board
+import busio
+import adafruit_pca9685
 import cRepulsor
 import cMissle
 import cMechanics
@@ -7,7 +9,8 @@ import cTemp
 import multiprocessing
 import time
 
-pwm = Adafruit_PCA9685.PCA9685()
+i2c = busio.I2C(board.SCL, board.SDA)
+pwm = adafruit_pca9685.PCA9685(i2c)
 repulsor = cRepulsor.cRepulsor(pwm, 4)
 missle = cMissle.cMissle(pwm, 0)
 mechanics = cMechanics.cMechanics()
