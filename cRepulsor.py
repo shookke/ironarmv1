@@ -56,7 +56,7 @@ class cRepulsor:
             self.led.duty_cycle = self.LED_max
             while pygame.mixer.music.get_busy() == True:
                 continue
-            self.arm()
+            #self.arm()
     
     def flight(self):
         if self.flight_mode:
