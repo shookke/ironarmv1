@@ -54,7 +54,6 @@ class cRepulsor:
             pygame.mixer.music.play()
             time.sleep(0.5)
             self.led.duty_cycle = self.LED_max
-            time.sleep(0.5)
             while pygame.mixer.music.get_busy() == True:
                 continue
             self.arm()
