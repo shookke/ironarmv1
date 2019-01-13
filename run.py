@@ -47,7 +47,7 @@ def process_classifier(pose):
     if (pose == pose.WAVE_OUT):
         print(position)
         if not missle.isArmed():
-            if position[0] < 0.86:
+            if position[0] > 0.86:
                 repulsor.flight_mode = True
                 repulsor.flight()   
             else:
