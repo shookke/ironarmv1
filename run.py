@@ -31,7 +31,7 @@ def process_emg(emg):
 
 def process_imu(quat, acc, gyro):
     global position
-    position = quat
+    position = acc
 
 def process_sync(arm, x_direction):
     global synced
@@ -47,7 +47,7 @@ def process_classifier(pose):
     if (pose == pose.WAVE_OUT):
         print(position)
         if not missle.isArmed():
-            if position[2] < -0.2:
+            if position[0] < 0.86:
                 repulsor.flight_mode = True
                 repulsor.flight()   
             else:
@@ -57,7 +57,7 @@ def process_classifier(pose):
         repulsor.fire()
     elif (pose ==pose.FIST):
         if not repulsor.isArmed():
-            if position[2] < -0.2:
+            if position[0] < 0.86:
                 missle.arm()
     elif (pose == pose.WAVE_IN):
         missle.fire()
@@ -65,7 +65,7 @@ def process_classifier(pose):
         print('Nothing')
     elif (pose == pose.REST):
         if position:    
-            if position[2] > -0.2:
+            if position[0] > 0.86:
                 if repulsor.isArmed() or repulsor.flight_mode:
                     repulsor.disarm()
                     repulsor.flight_mode = False
@@ -98,7 +98,7 @@ myo_device.services.emg_filt_notifications()
 # myo_device.services.emg_raw_notifications()
 myo_device.services.imu_notifications()
 myo_device.services.classifier_notifications()
-# myo_device.services.battery_notifications()
+myo_device.services.battery_notifications()
 myo_device.services.set_mode(myo.EmgMode.FILT, myo.ImuMode.DATA, myo.ClassifierMode.ON)
 # myo_device.add_emg_event_handler(process_emg)
 # myo_device.add_emg_event_handler(led_emg)
