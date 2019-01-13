@@ -6,7 +6,7 @@ class cMechanics:
 
     def __init__(self, **kwargs):
         ORDER = neopixel.RGBW
-        self.leds = pixels = neopixel.NeoPixel(board.D21, 2, pixel_order=ORDER)
+        self.leds = neopixel.NeoPixel(board.D21, 2, pixel_order=ORDER)
         for key in kwargs:
             setattr(self, key, kwargs[key])
         
