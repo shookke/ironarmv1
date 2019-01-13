@@ -11,6 +11,17 @@ class cMechanics:
             setattr(self, key, kwargs[key])
         
     def boot(self):
-        self.leds[0] = (255, 0, 0, 0)
+        #self.leds[0] = (0, 0, 0, 150)
             
-        
+    def status(self, batt, charging):
+        if batt <= 20:
+            self.leds.fill((100, 150, 0, 0))
+        if charging:
+            while batt not 100:
+                for i in range(0, 100):
+                    self.leds.fill((i, 0, 0, 0))
+                for i in range(100, 0, -1):
+                    self.leds.fill((i, 0, 0, 0))    
+        else:
+            self.leds.fill((0, 0, 0, 150))
+
