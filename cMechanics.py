@@ -10,6 +10,6 @@ class cMechanics:
             setattr(self, key, kwargs[key])
         
     def boot(self):
-        self.leds[0] = (0, 255, 0)
+        self.leds[0] = (0, 255, 0, 255)
             
         
