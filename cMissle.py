@@ -1,4 +1,4 @@
-import lib.Adafruit_PCA9685 as Adafruit_PCA9685
+import adafruit_pca9685
 import time
 from random import random
 

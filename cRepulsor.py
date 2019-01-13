@@ -1,4 +1,4 @@
-import Adafruit_PCA9685
+import adafruit_pca9685
 import pygame  
 import time
 from random import random
