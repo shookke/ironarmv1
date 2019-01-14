@@ -29,8 +29,8 @@ class cRepulsor:
         for i in range(self.LED_min, self.LED_med):
                 self.led.duty_cycle = i
                 #time.sleep(0.05)
-        while pygame.mixer.music.get_busy() == True:
-            continue
+        #while pygame.mixer.music.get_busy() == True:
+            #continue
         self.armed = True
     
     def disarm(self):

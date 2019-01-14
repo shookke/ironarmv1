@@ -1,6 +1,7 @@
 import lib.Open_Myo.open_myo as myo
 import board
 import busio
+#import analogio
 import adafruit_pca9685
 import cRepulsor
 import cMissle
@@ -11,12 +12,13 @@ import time
 
 i2c = busio.I2C(board.SCL, board.SDA)
 pwm = adafruit_pca9685.PCA9685(i2c)
+#charging = analogio.AnalogIn(board.D13)
 repulsor = cRepulsor.cRepulsor(pwm, 4)
 missle = cMissle.cMissle(pwm, 0)
 mechanics = cMechanics.cMechanics()
 cooler = cTemp.cTemp(pwm, 1)
 
-mechanics.boot()
+#mechanics.boot()
 temp = 2.5
 position = []
 initial_pos = position
@@ -76,6 +78,7 @@ def process_classifier(pose):
 
 def process_battery(batt):
     print("Battery level: %d" % batt)
+    mechanics.status(batt, charging=False)
 
 
 def led_emg(emg):
@@ -96,12 +99,13 @@ batt = myo_device.services.battery()
 print("Battery level: %d" % batt)
 myo_device.services.emg_filt_notifications()
 # myo_device.services.emg_raw_notifications()
+myo_device.services.battery_notifications()
 myo_device.services.imu_notifications()
 myo_device.services.classifier_notifications()
-myo_device.services.battery_notifications()
 myo_device.services.set_mode(myo.EmgMode.FILT, myo.ImuMode.DATA, myo.ClassifierMode.ON)
 # myo_device.add_emg_event_handler(process_emg)
 # myo_device.add_emg_event_handler(led_emg)
+myo_device.add_battery_event_handler(process_battery)
 myo_device.add_imu_event_handler(process_imu)
 myo_device.add_sync_event_handler(process_sync)
 myo_device.add_classifier_event_hanlder(process_classifier)
