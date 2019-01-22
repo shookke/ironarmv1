@@ -17,16 +17,16 @@ class cMissle:
         self.pwm.frequency = 60
         self.motor.duty_cycle = self.servo_max
         self.armed = True
-    
+
     def disarm(self):
         self.pwm.frequency = 60
         self.motor.duty_cycle = self.servo_min
         self.armed = False
-    
+
     def fire(self):
         if self.armed:
             print('FIRE!')
-    
+
     def isArmed(self):
         if self.armed:
             return True

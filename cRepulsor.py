@@ -1,13 +1,18 @@
 import adafruit_pca9685
-import pygame  
+import pygame as pg
 import time
 from random import random
 
-pygame.mixer.init()
+freq = 44100    # audio CD quality
+bitsize = -16   # unsigned 16 bit
+channels = 1    # 1 is mono, 2 is stereo
+buffer = 2048   # number of samples (experiment to get right sound)
+pg.mixer.init(freq, bitsize, channels, buffer)
 
 
 class cRepulsor:
     def __init__(self, pwm, led):
+        self.clock = pg.time.Clock()
         self.armed = False
         self.pwm = pwm
         self.led = self.pwm.channels[led]
@@ -22,44 +27,44 @@ class cRepulsor:
 
     def arm(self):
         self.pwm.frequency = 1000
-        pygame.mixer.music.load(self.arming)  
-        pygame.mixer.music.set_volume(1.0) 
-        pygame.mixer.music.play()
+        pg.mixer.music.load(self.arming)  
+        pg.mixer.music.set_volume(1.0) 
+        pg.mixer.music.play()
         time.sleep(0.5)
         for i in range(self.LED_min, self.LED_med):
-                self.led.duty_cycle = i
-                #time.sleep(0.05)
-        #while pygame.mixer.music.get_busy() == True:
-            #continue
+            self.led.duty_cycle = i
+            #time.sleep(0.05)
+        while pg.mixer.music.get_busy() == True:
+            self.clock.tick(2)
         self.armed = True
-    
+
     def disarm(self):
         self.pwm.frequency = 1000
-        pygame.mixer.music.load(self.disarming)
-        pygame.mixer.music.set_volume(1.0)   
-        pygame.mixer.music.play()
+        pg.mixer.music.load(self.disarming)
+        pg.mixer.music.set_volume(1.0)   
+        pg.mixer.music.play()
         time.sleep(0.5)
         for i in range(self.LED_med, -1, -1):
-                        #print(i)
-                        self.led.duty_cycle = i
-                        #time.sleep(0.05)
-        while pygame.mixer.music.get_busy() == True:
-            continue
+            #print(i)
+            self.led.duty_cycle = i
+            #time.sleep(0.05)
+        while pg.mixer.music.get_busy() == True:
+            self.clock.tick(3)
         self.armed = False
-    
+
     def fire(self):
         if self.armed:
-            pygame.mixer.music.load(self.disarming)   
-            pygame.mixer.music.set_volume(1.0)
-            pygame.mixer.music.play()
+            pg.mixer.music.load(self.disarming)   
+            pg.mixer.music.set_volume(1.0)
+            pg.mixer.music.play()
             time.sleep(0.5)
             self.led.duty_cycle = self.LED_max
             time.sleep(0.2)
             self.led.duty_cycle = self.LED_med
-            while pygame.mixer.music.get_busy() == True:
-                continue
+            while pg.mixer.music.get_busy() == True:
+                self.clock.tick(4)
             #self.arm()
-    
+
     def flight(self):
         if self.flight_mode:
             self.pwm.frequency = 1000

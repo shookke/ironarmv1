@@ -9,10 +9,10 @@ class cMechanics:
         self.leds = neopixel.NeoPixel(board.D12, 2, pixel_order=ORDER)
         for key in kwargs:
             setattr(self, key, kwargs[key])
-        
+
     def boot(self):
         return
-    
+
     def status(self, batt, charging):
         if batt <= 20:
             self.leds.fill((100, 150, 0, 0))
@@ -24,4 +24,3 @@ class cMechanics:
                     self.leds.fill((0, i, 0, 0))    
         else:
             self.leds.fill((0, 0, 100, 150))
-
