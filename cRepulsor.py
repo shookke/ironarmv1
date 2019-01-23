@@ -54,7 +54,7 @@ class cRepulsor:
 
     def fire(self):
         if self.armed:
-            pg.mixer.music.load(self.disarming)   
+            pg.mixer.music.load(self.firing)   
             pg.mixer.music.set_volume(1.0)
             pg.mixer.music.play()
             time.sleep(0.5)
