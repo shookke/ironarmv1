@@ -30,7 +30,7 @@ class cRepulsor:
         pg.mixer.music.load(self.arming)  
         pg.mixer.music.set_volume(1.0) 
         pg.mixer.music.play()
-        time.sleep(0.5)
+        #time.sleep(0.5)
         for i in range(self.LED_min, self.LED_med):
             self.led.duty_cycle = i
             #time.sleep(0.05)
@@ -43,7 +43,7 @@ class cRepulsor:
         pg.mixer.music.load(self.disarming)
         pg.mixer.music.set_volume(1.0)   
         pg.mixer.music.play()
-        time.sleep(0.5)
+        #time.sleep(0.5)
         for i in range(self.LED_med, -1, -1):
             #print(i)
             self.led.duty_cycle = i
@@ -57,7 +57,7 @@ class cRepulsor:
             pg.mixer.music.load(self.firing)   
             pg.mixer.music.set_volume(1.0)
             pg.mixer.music.play()
-            time.sleep(0.5)
+            #time.sleep(0.5)
             self.led.duty_cycle = self.LED_max
             time.sleep(0.2)
             self.led.duty_cycle = self.LED_med
