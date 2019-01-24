@@ -33,7 +33,7 @@ class cRepulsor:
         for i in range(self.LED_min, self.LED_med):
             self.led.duty_cycle = i
         while pg.mixer.music.get_busy() == True:
-            self.clock.tick(2)
+            return
         self.armed = True
 
     def disarm(self):
@@ -44,7 +44,7 @@ class cRepulsor:
         for i in range(self.LED_med, self.LED_min, -2):
             self.led.duty_cycle = i
         while pg.mixer.music.get_busy() == True:
-            self.clock.tick(2)
+            return
         self.armed = False
 
     def fire(self):
@@ -56,7 +56,7 @@ class cRepulsor:
             time.sleep(0.2)
             self.led.duty_cycle = self.LED_med
             while pg.mixer.music.get_busy() == True:
-                self.clock.tick(4)
+                return
 
     def flight(self):
         if self.flight_mode:
