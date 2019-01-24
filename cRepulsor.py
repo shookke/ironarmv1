@@ -41,7 +41,7 @@ class cRepulsor:
         pg.mixer.music.load(self.disarming)
         pg.mixer.music.set_volume(1.0)
         pg.mixer.music.play()
-        for i in range(self.LED_med, self.LED_min, -2):
+        for i in range(self.LED_med, self.LED_min, -10):
             self.led.duty_cycle = i
         while pg.mixer.music.get_busy() == True:
             return
